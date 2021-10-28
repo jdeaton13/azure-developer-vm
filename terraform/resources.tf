@@ -75,7 +75,7 @@ resource "azurerm_network_interface" "nic_development_sandbox_internal" {
 
 resource "azurerm_network_security_group" "nsg-development-sandbox" {
   resource_group_name = azurerm_resource_group.rg_development_sandbox.name
-  name                = "nic-development-sandbox-internal"
+  name                = "nsg-development-sandbox-internal"
   location            = azurerm_resource_group.rg_development_sandbox.location
 
   security_rule = [
@@ -93,7 +93,7 @@ resource "azurerm_network_security_group" "nsg-development-sandbox" {
       destination_address_prefixes               = []
       destination_application_security_group_ids = []
       destination_port_ranges                    = []
-      source_address_prefixes                    = ["168.149.138.117"]
+      source_address_prefixes                    = ["168.149.138.57"]
       source_application_security_group_ids      = []
       source_port_ranges                         = []
     }
