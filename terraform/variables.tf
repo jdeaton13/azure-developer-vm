@@ -25,5 +25,5 @@ variable "vm_username" {
 variable "vm_password" {
   description = "Vm administrator password"
   type        = string
-  sensitive   = true 
+  sensitive   = true
 }
