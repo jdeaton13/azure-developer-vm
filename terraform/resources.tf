@@ -113,6 +113,7 @@ resource "azurerm_windows_virtual_machine" "vm_development_sandbox" {
   admin_username      = var.vm_username
   admin_password      = var.vm_password
   license_type        = "Windows_Client"
+  computer_name       = "DevSandbox"
   network_interface_ids = [
     azurerm_network_interface.nic_development_sandbox_public.id
   ]
