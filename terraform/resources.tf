@@ -22,6 +22,12 @@ provider "azurerm" {
   }
 }
 
+data "azurerm_resources" "kv_development_sandbox" {
+  resource_group_name = "rg-keyvault"
+  name                = "kv-development-sandbox"
+}
+
+
 resource "azurerm_resource_group" "rg_development_sandbox" {
   name     = "rg-development-sandbox"
   location = var.region
@@ -96,6 +102,24 @@ resource "azurerm_network_security_group" "nsg-development-sandbox" {
       source_address_prefixes                    = ["168.149.138.57"]
       source_application_security_group_ids      = []
       source_port_ranges                         = []
+    },
+    {
+      description                                = "winrm"
+      access                                     = "Allow"
+      direction                                  = "Inbound"
+      protocol                                   = "tcp"
+      name                                       = "winrm"
+      source_port_range                          = "*"
+      source_address_prefix                      = ""
+      destination_port_range                     = "5986"
+      destination_address_prefix                 = azurerm_network_interface.nic_development_sandbox_public.private_ip_address
+      priority                                   = "200"
+      destination_address_prefixes               = []
+      destination_application_security_group_ids = []
+      destination_port_ranges                    = []
+      source_address_prefixes                    = ["168.149.141.72"]
+      source_application_security_group_ids      = []
+      source_port_ranges                         = []
     }
   ]
 }
@@ -128,5 +152,18 @@ resource "azurerm_windows_virtual_machine" "vm_development_sandbox" {
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "StandardSSD_LRS"
+  }
+
+  winrm_listener {
+    protocol        = https
+    certificate_url = "https://kv-development-sandbox.vault.azure.net/secrets/winrm-certificate/1939febe7d004fb091755373cc92a82b"
+  }
+
+  secret {
+    certificate {
+      store = "My"
+      url   = "https://kv-development-sandbox.vault.azure.net/secrets/winrm-certificate/1939febe7d004fb091755373cc92a82b"
+    }
+    key_vault_id = data.azurerm_resources.kv_development_sandbox.resources[0].id
   }
 }

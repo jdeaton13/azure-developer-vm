@@ -1,0 +1,5 @@
+production:
+  vars:
+    host_ips: "{{ lookup('env', 'HOST_IPS') }}"
+  children:
+    hosts: '{{ host_ips }}'
