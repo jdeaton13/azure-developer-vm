@@ -155,7 +155,7 @@ resource "azurerm_windows_virtual_machine" "vm_development_sandbox" {
   }
 
   winrm_listener {
-    protocol        = "https"
+    protocol        = "Https"
     certificate_url = "https://kv-development-sandbox.vault.azure.net/secrets/winrm-certificate/1939febe7d004fb091755373cc92a82b"
   }
 
