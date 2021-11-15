@@ -99,7 +99,7 @@ resource "azurerm_network_security_group" "nsg-development-sandbox" {
       destination_address_prefixes               = []
       destination_application_security_group_ids = []
       destination_port_ranges                    = []
-      source_address_prefixes                    = ["168.149.138.57"]
+      source_address_prefixes                    = ["168.149.138.72"]
       source_application_security_group_ids      = []
       source_port_ranges                         = []
     },
@@ -155,7 +155,7 @@ resource "azurerm_windows_virtual_machine" "vm_development_sandbox" {
   }
 
   winrm_listener {
-    protocol        = https
+    protocol        = "https"
     certificate_url = "https://kv-development-sandbox.vault.azure.net/secrets/winrm-certificate/1939febe7d004fb091755373cc92a82b"
   }
 
