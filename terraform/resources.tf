@@ -99,7 +99,7 @@ resource "azurerm_network_security_group" "nsg-development-sandbox" {
       destination_address_prefixes               = []
       destination_application_security_group_ids = []
       destination_port_ranges                    = []
-      source_address_prefixes                    = ["168.149.138.72"]
+      source_address_prefixes                    = ["168.149.139.12"]
       source_application_security_group_ids      = []
       source_port_ranges                         = []
     },
@@ -117,7 +117,7 @@ resource "azurerm_network_security_group" "nsg-development-sandbox" {
       destination_address_prefixes               = []
       destination_application_security_group_ids = []
       destination_port_ranges                    = []
-      source_address_prefixes                    = ["168.149.141.72"]
+      source_address_prefixes                    = ["168.149.139.12"]
       source_application_security_group_ids      = []
       source_port_ranges                         = []
     }
