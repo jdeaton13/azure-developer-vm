@@ -99,7 +99,7 @@ resource "azurerm_network_security_group" "nsg-development-sandbox" {
       destination_address_prefixes               = []
       destination_application_security_group_ids = []
       destination_port_ranges                    = []
-      source_address_prefixes                    = ["168.149.139.0/24", "205.141.247.0/24"]
+      source_address_prefixes                    = ["168.149.139.0/24", "205.141.247.0/24", "64.57.146.0/24"]
       source_application_security_group_ids      = []
       source_port_ranges                         = []
     },
